@@ -26,6 +26,16 @@ ___
 
 ___
 
+<br />
+
+##### Recommended Resources
+
+. [TDD - Kent Beck](https://www.amazon.co.uk/Test-Driven-Development-Addison-Wesley-Signature/dp/0321146530/ref=sr_1_1?crid=2PLOKSRB3B1QE&keywords=TDD+kent+beck&qid=1669153819&sprefix=t%2Caps%2C245&sr=8-1)
+
+<br />
+
+___
+
 <div align="right">
 
 [next >>](./chapters/1_introduction)

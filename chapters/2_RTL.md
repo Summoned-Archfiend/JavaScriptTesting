@@ -46,3 +46,8 @@ test('passes due to empty', () => {
 });
 
 </code>
+
+
+## Philosophy
+
+RTL provides us with the tools to render, interact, and test our expectations using a virtual DOM. The advantage of this is we can test our code without the need for using a browser. The philosophy imposed by RTL is the fact it encourages the use of `functional` tests. This means RTL wants us to test the behaviour of our application, not necessarily our code. A common error you will see in applications is the naming of `functional` tests as `*.unit.test`. Personally, I think this to be very bad practice as I want the file to tell me exactly what test it is, I want to know the intent of the test, should it be testing functionality? or code? as such, it is important that when we write our tests we write them knowing what we are testing and try to only name actual `unit` tests as `*.unit.test`, for others I tend to name them after the base component whose behaviour the functional test is testing.
