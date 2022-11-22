@@ -18,3 +18,9 @@ test('renders learn react link', () => {
 Another example of a matcher would be the more generic `toBe` method which also takes an argument of a comparator, this would be the object or value to compare the expectant result to.
 
 So, how exactly do assertions work? assertions basically check our matcher. If our result matches our expectation the test passes, however, if it does not then an error is thrown, our `Jest` test function then detects this error and causes our test to fail.
+
+___
+
+<div align="right">
+
+[<< prev](./3_jest.md) | [next >>](../README.md)

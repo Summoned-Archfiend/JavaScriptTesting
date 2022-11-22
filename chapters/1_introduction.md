@@ -11,3 +11,9 @@ We also have `unit` tests, these are the tests which we often write to test our 
 Functional tests test a particular function of a software (behaviour). For instance, if we are testing a `LoginPage` we would test the functionality of the `Login`, making sure that the user is able to enter their password, hit submit, and have the next page either render, or have an error message display should the password be rejected. This itself can be a `unit` or even an `integration` test. The keystone of `functional` tests is that we are not testing code (unlike the goal of unit and integration tests). Much like `Regression` we are actually testing the behaviour of our application from a user perspective.
 
 Finally, we have acceptance or `end-to-end` tests, these require an actual browser, are usually performed by a testing team manually, but are often also automated using a software like `Cypress` or `Selenium`. This is because they require a real server rather than simply mocking the request and response cycle as we do when writing other tests.
+
+___
+
+<div align="right">
+
+[<< prev](../README.md) | [next >>](./2_RTL.md)

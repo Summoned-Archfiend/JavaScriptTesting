@@ -72,3 +72,9 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 </pre>
+
+___
+
+<div align="right">
+
+[<< prev](./1_introduction.md) | [next >>](./2_RTL.md)
