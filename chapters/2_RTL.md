@@ -13,3 +13,34 @@ The rationale for this is that [1] if we test our app the way our user uses it w
 ## The Role of RTL
 
 RTL provides us with a virtual DOM for running tests. This allows for us to interact with elements and check that the virtual DOM is responding and updating in the expected manner.
+
+## First RTL Example
+
+When we first create a react application using create-react-app we get an initial test file which looks something like this:
+
+<pre>
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+</pre>
+
+Even if you are familiar with unit testing there are a few surprises here. First of all, `jest` is very different to other testing libraries you may be familiar with coming from classical languages like `Java` and `PHP` using `PHPUnit` or `JUnit` as these tests are made to test class based components. JS is not a class based language but a prototypal language, most things we want to test in JS are themselves functions, not necessarily functions of a particular object either since we mostly focus on functional based approaches when writing JS (more on that in the `jest` chapter). The second thing you will notice is the imports atop of the page. We begin with an import of `render` and `screen` from RTL itself, what are these? why do we import them? how do we even know to import them?
+
+First of all we will always need the `render` method as this is the function responsible for creating our `virtual DOM`. As we discussed earlier this is a necessary step in order to give us a DOM to play with, to render components to, to manipulate, and to verify against. Secondly, we need a means of accessing the virtual DOM after it has been rendered, as such, we import the `screen` global object, this gives us the means of accessing our virtual DOM via a range of accessor methods, we can see the use of this when we call `getByText` on the screen object passing it a `regex` pattern. This means that our `linkElement` will actually contain a reference to our element from the virtual DOM matching the regex pattern, in memory. Lastly we have an `assertion`, this is what `asserts` the value that we are expecting, generally, a test will pass by default, this means that an empty test is actually a successful test, our test fails only when an error occurs, we can check this by manually writing a test containing only an error.
+
+<code>
+
+test('fails due to error thrown', () => {
+    throw new Error('Failure!');
+});
+
+test('passes due to empty', () => {
+    // Nothing here!
+});
+
+</code>
