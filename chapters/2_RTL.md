@@ -35,8 +35,7 @@ Even if you are familiar with unit testing there are a few surprises here. First
 
 First of all we will always need the `render` method as this is the function responsible for creating our `virtual DOM`. As we discussed earlier this is a necessary step in order to give us a DOM to play with, to render components to, to manipulate, and to verify against. Secondly, we need a means of accessing the virtual DOM after it has been rendered, as such, we import the `screen` global object, this gives us the means of accessing our virtual DOM via a range of accessor methods, we can see the use of this when we call `getByText` on the screen object passing it a `regex` pattern. This means that our `linkElement` will actually contain a reference to our element from the virtual DOM matching the regex pattern, in memory. Lastly we have an `assertion`, this is what `asserts` the value that we are expecting, generally, a test will pass by default, this means that an empty test is actually a successful test, our test fails only when an error occurs, we can check this by manually writing a test containing only an error.
 
-<code>
-
+<pre>
 test('fails due to error thrown', () => {
     throw new Error('Failure!');
 });
@@ -44,8 +43,7 @@ test('fails due to error thrown', () => {
 test('passes due to empty', () => {
     // Nothing here!
 });
-
-</code>
+</pre>
 
 
 ## Philosophy
