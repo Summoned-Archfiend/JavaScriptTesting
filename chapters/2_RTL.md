@@ -51,3 +51,24 @@ test('passes due to empty', () => {
 ## Philosophy
 
 RTL provides us with the tools to render, interact, and test our expectations using a virtual DOM. The advantage of this is we can test our code without the need for using a browser. The philosophy imposed by RTL is the fact it encourages the use of `functional` tests. This means RTL wants us to test the behaviour of our application, not necessarily our code. A common error you will see in applications is the naming of `functional` tests as `*.unit.test`. Personally, I think this to be very bad practice as I want the file to tell me exactly what test it is, I want to know the intent of the test, should it be testing functionality? or code? as such, it is important that when we write our tests we write them knowing what we are testing and try to only name actual `unit` tests as `*.unit.test`, for others I tend to name them after the base component whose behaviour the functional test is testing.
+
+Sometimes `functional` and `unit` tests can be similar, however, the mentality for them differs. When we write a `unit` test we are testing an isolated unit, we `mock` our dependencies and test the internals of the code itself. We isolate `units` as much as possible, ensuring that if our `unit` tests fail it is definitely due to our particular `unit` and nothing else in the ecosystem.
+
+It is very easy to pinpoint the failures of `unit` tests because of this, however, it is much further from how users interact with the application. This means that our `unit` tests may pass even though users are having problems with the interactivity of the application, or conversely, our tests may fail when a user can actually use the application fine simply because a particular `unit` is not working entirely as expected. Unit tests are also far more likely to break when refactoring since it is our actual `code` implementation we are testing. Although we don't change the behaviour when refactoring `unit` tests are testing how our software is written, therefore even if the behaviour does not change the way in which it is written may have changed.
+
+Functional tests on the other hand include all relevant `units`, `integrations`, `tests`, and behaviour. They are closely coupled to the users interaction with the application. When we write a functional test we often want to simulate exactly how a user would interact with our application, for instance, we create our component in a virtual environment and then simulate button clicks and so on. This means that if the user has a problem interacting with our application then our `functional` tests should also fail. Conversely, our tests should pass if the user is having no issues with interacting with our software, this is a direct reflection of the user experience. `Functional` tests tend to be robust, even if we refactor our code the tests should still pass so long as the behaviour of our application remains the same. It isn't all great though, there is a tradeoff, unlike `unit` tests we are not testing these in small isolated chunks, in fact we can often be testing large collections of components at once dependent on the functionality we are testing. This means that if there is a failure it can be caused by anything within the virtual ecosystem of that particular test.
+
+## Accessibility
+
+RTL encourages us to find our elements by accessibility handles rather than IDs. RTL has a handy guide for working out which query we should use for looking up our elements in the virtual DOM [here](https://testing-library.com/docs/queries/about/). Test IDs should only be used as a last resort, we should try to access our DOM using element queries such as `getByRole` or `getByLabelText` failing this we should prioritise `semantic queries` such as `getByAltText` and `getByTitle` prior to event considering using IDs. In our example test we see that the element is accessed via `getByText`, this is the first priority for non-interactive `elements`, however, notice that the element selected is actually a link. This is an interactive element, thus the test itself is actually somewhat incorrect, we should change this to use `getByRole` instead. Using `Role` ensures our element is accessible by screen readers, it is recommended to use `role` whenever possible, we can get a list of `roles` on [w3.org](https://www.w3.org/TR/wai-aria/#role_definitions) however, it is also possible to define our own roles on any given element using the `role` attribute.
+
+<pre>
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(< App />);
+  const linkElement = screen.getByRole('link', { name: /learn react/i });
+  expect(linkElement).toBeInTheDocument();
+});
+</pre>

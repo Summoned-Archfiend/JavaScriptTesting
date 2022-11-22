@@ -12,6 +12,7 @@ ___
 2. [React Testing Library](./chapters/2_RTL.md)
 3. [Jest](./chapters/3_jest.md)
 4. [Assertions](./chapters/4_assertion.md)
+
 <!--
 [Enzyme]()
 -->
