@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome, this is somewhat of a add-on to the [Understanding Node](https://github.com/Summoned-Archfiend/Understanding-Node/blob/master/chapters/1_introduction.md) document, however, I feel testing deserves it's own little section. We wont go into quite as much detail here as we do in the Understanding Node project, as we are going to remain focused purely on testing and writing tests. We will keep this condensed as the Understanding Node segment is already quite a large document for reading, but we will be sure to cover the dos, don'ts, whys, and hows of each tool and library we use.
+Welcome, this is somewhat of a add-on to the [Understanding Node](https://github.com/Summoned-Archfiend/Understanding-Node/blob/master/chapters/1_introduction.md) document, however, I feel testing deserves it's own little section. We wont go into quite as much detail here as we do in the Understanding Node project, as we are going to remain focused purely on testing and writing tests. We will keep this condensed as the Understanding Node segment is already quite a large document for reading, but we will be sure to cover the dos, don'ts, whys, and hows of each tool and library we use. In each section there will be some repetition, remember, repetition is the key to retaining information, but also this will be in the form of sub-paragraphs which may contain TLDR; versions of the larger paragraphs as a quick reference to those just wanting a reminder.
 
 ## Why bother testing?
 

@@ -11,7 +11,7 @@ ___
 1. [Introduction](./chapters/1_introduction.md)
 2. [React Testing Library](./chapters/2_RTL.md)
 3. [Jest](./chapters/3_jest.md)
-
+4. [Assertions]()
 <!--
 [Enzyme]()
 -->
