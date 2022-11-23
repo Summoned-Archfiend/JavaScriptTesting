@@ -15,6 +15,8 @@ Jest detects our changes via the `global` test method. This method takes an argu
 
 Most mid-level developers know how to use a testing framework like Jest, however, if asked how they work many would know very little about what happens under the hood. Testing is actually rather simplistic in reality, we run our code as we would normally and assess the result. If the result equates to the expected result, our test should pass, else, it should fail. It does this by throwing an error if our result does not match our expectations. If we were to write a very simple test without a framework it may look something like this:
 
+<br />
+
 <pre>
 const sum = (a, b) => a - b
 
@@ -27,6 +29,8 @@ if (answer !== expected) {
 </pre>
 
 Here we have a sum function. We expect it to sum the results but unbeknownst to the original developer there is a bug! they have accidentally used the `-` operator, thus when we check our answer against the expected result our error is thrown. This works, but it isn't very reusable, nor is it very nice to look at. We would need to improve this further if we were to use it as an actual test library, fortunately to attain behaviour similar to Jest doesn't require much expansion, we can utilise higher order functions and JS' unique composition ability to return functions as object members in order to attain an expect function which itself returns an object with a `toBe` function that asserts our value.
+
+<br />
 
 <pre>
 const expect = actual => {
@@ -46,6 +50,17 @@ expect(result).toBe(expected);
 </pre>
 
 Here the `expect` function returns an `object` which has a property `toBe` of which itself is a `function` that takes an `expected` as an argument. We call this on the result passing our expectant value, as such, the if statement then checks for equality of the `actual` and the `expected` values. Notice how we only error if they do not match, in any other case we do absolutely nothing, in other words, we only care about failure anything else we can ignore as a success. In reality, testing libraries will usually give you some kind of success confirmation, usually with a nice green text counting all of your passing tests, but this example suffices for drilling home the function of tests.
+
+Frameworks like `Jest` gives us much more information on failing tests, are far more descriptive, and more powerful in terms of the utilities they give us for interacting with tests and making assertions. We can use `test` blocks to describe our tests and `describe` blocks to group related tests together (these can even be nested to break down tests into further groupings), `it` is an alias for `test`, pick one and stick with it for consistency but know there is no feasible difference between the two, some argue `it` to be more descriptive as it reads better, others argue that `test` is better as it describes what the process is, it is mostly down to either personal preference on your own projects or the standard set by the codebase elsewhere.
+
+<br />
+
+<pre>
+describe('Several related tests', () => {
+    test('Should execute a single test', () => { ... })
+    it('Should execute a single test', () => { ... })
+})
+</pre>
 
 ___
 
