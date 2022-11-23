@@ -26,7 +26,26 @@ if (answer !== expected) {
 }
 </pre>
 
-Here we have a sum function. We expect it to sum the results but unbeknownst to the original developer there is a bug! they have accidentally used the `-` operator, thus when we check our answer against the expected result our error is thrown.
+Here we have a sum function. We expect it to sum the results but unbeknownst to the original developer there is a bug! they have accidentally used the `-` operator, thus when we check our answer against the expected result our error is thrown. This works, but it isn't very reusable, nor is it very nice to look at. We would need to improve this further if we were to use it as an actual test library, fortunately to attain behaviour similar to Jest doesn't require much expansion, we can utilise higher order functions and JS' unique composition ability to return functions as object members in order to attain an expect function which itself returns an object with a `toBe` function that asserts our value.
+
+<pre>
+const expect = actual => {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}!`)
+      };
+    },
+  };
+};
+
+const result = sum(1, 3);
+const expected = 4;
+
+expect(result).toBe(expected);
+</pre>
+
+Here the `expect` function returns an `object` which has a property `toBe` of which itself is a `function` that takes an `expected` as an argument. We call this on the result passing our expectant value, as such, the if statement then checks for equality of the `actual` and the `expected` values. Notice how we only error if they do not match, in any other case we do absolutely nothing, in other words, we only care about failure anything else we can ignore as a success. In reality, testing libraries will usually give you some kind of success confirmation, usually with a nice green text counting all of your passing tests, but this example suffices for drilling home the function of tests.
 
 ___
 
