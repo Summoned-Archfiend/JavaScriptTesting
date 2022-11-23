@@ -62,6 +62,61 @@ describe('Several related tests', () => {
 })
 </pre>
 
+<br />
+
+We can actually use this knowledge to improve our own "framework" somewhat. Notice how everything here is actually a function, everything we do in jest is simply calling a function and passing in some values, whether that value be a callback full of our assertions or a title, that is pretty much all we do in Jest.  As such we can begin by defining a `test` function. This function should take two arguments:
+
+1. title - The "title" (or description) of the test to run
+2. callback - The callback containing our assertions
+
+All this test function will actually do is run our `callback` function, but, we need to make sure we catch any errors. We know that our `expect` function works by comparing our `actual` and `expected`, throwing an error if they do not match. Thus, we need to handle this error with a `try/catch`. In doing so we allow execution to continue even if one of our tests fail, this means we can run all of our tests and print a nice output to the console describing which tests failed, and which passed.
+
+<br />
+
+<pre>
+const expect = actual => {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}!`)
+      };
+    },
+  };
+};
+
+const test = (title, callback) => {
+  try {
+    callback();
+    console.log(`✓ ${title}`)
+  } catch(error) {
+    console.error(`x ${title}`)
+    console.error(error);
+  };
+};
+
+test('Sums the arguments together', () => {
+  const { sum } = require('./calc');
+
+  const result = sum(3, 7);
+  const expected = 10;
+
+  expect(result).toBe(expected);
+});
+
+test('Subtracts the arguments from one another', () => {
+  const { subtract } = require('./calc');
+
+  const result = subtract(7, 3);
+  const expected = 4;
+
+  expect(result).toBe(expected);
+});
+</pre>
+
+<br />
+
+Great! so we have two of our necessary functions to test our code and we get nice console output whether our test is successful or fails! notice how we can run multiple tests, and each of our tests are isolated and contained from one another. If you have read through [UnderStandingNode](https://github.com/Summoned-Archfiend/Understanding-Node) you have likely spotted exactly how this is achieved. For those who haven't this is achieved through the use of functions. Within each of our functions is a new execution context created upon invocation, each of these contexts come with their own `local` memory, this means nothing outside of our function has access to the internals of the function until it is returned from the `local` memory into the global variable environment. 
+
 ___
 
 <div align="right">
