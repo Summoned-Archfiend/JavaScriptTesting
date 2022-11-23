@@ -11,6 +11,23 @@ Jest-DOM uses the script `src/setupTests.js` to make DOM based matchers availabl
 
 Jest detects our changes via the `global` test method. This method takes an argument of a string description, this is how `jest` knows which test is running, and a test `function`. This `function` tells us whether our test succeeds or fails, it does so by checking if any error is thrown whilst the test function is running. If an error is thrown the test fails.
 
+## How Testing Frameworks Work
+
+Most mid-level developers know how to use a testing framework like Jest, however, if asked how they work many would know very little about what happens under the hood. Testing is actually rather simplistic in reality, we run our code as we would normally and assess the result. If the result equates to the expected result, our test should pass, else, it should fail. It does this by throwing an error if our result does not match our expectations. If we were to write a very simple test without a framework it may look something like this:
+
+<pre>
+const sum = (a, b) => a - b
+
+const answer = sum(1, 2);
+const expected = 3;
+
+if (answer !== expected) {
+  throw new Error(`Result: ${answer} is not equal to ${expected}!`);
+}
+</pre>
+
+Here we have a sum function. We expect it to sum the results but unbeknownst to the original developer there is a bug! they have accidentally used the `-` operator, thus when we check our answer against the expected result our error is thrown.
+
 ___
 
 <div align="right">

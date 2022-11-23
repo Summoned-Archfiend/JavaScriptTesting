@@ -12,6 +12,8 @@ Functional tests test a particular function of a software (behaviour). For insta
 
 Finally, we have acceptance or `end-to-end` tests, these require an actual browser, are usually performed by a testing team manually, but are often also automated using a software like `Cypress` or `Selenium`. This is because they require a real server rather than simply mocking the request and response cycle as we do when writing other tests.
 
+These are the main kinds of testing we mean when we say "testing" as software developers, but, it should be noted there are many other kinds of testing ranging from penetration testing to localisation testing and many more in between.
+
 ___
 
 <div align="right">
