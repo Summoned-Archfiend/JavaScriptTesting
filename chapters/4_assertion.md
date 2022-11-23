@@ -19,6 +19,8 @@ Another example of a matcher would be the more generic `toBe` method which also 
 
 So, how exactly do assertions work? assertions basically check our matcher. If our result matches our expectation the test passes, however, if it does not then an error is thrown, our `Jest` test function then detects this error and causes our test to fail.
 
+In `Jest` we have multiple assertions, all of which can be found on the docs. Most of these are self explanatory so we will not go into detail. One in particular to be aware of is the difference between `toMatchObject` and `objectContaining`, the first being an assertion which will still pass even if an object contains some, but not all, of the properties on the `expected` object. This means we are not checking for an exact match with this assertion, but a match of object structure rather than the actual values being present, whilst the latter (objectContaining) can be used to match on specific object properties and values and will fail if the objects are not exact matches.
+
 ___
 
 <div align="right">
