@@ -107,6 +107,20 @@ expect.extend({
 });
 </pre>
 
+<br />
+
+___
+
+<br />
+
+<div style="font-size: 8px">
+
+  [Example Resource: redd.one/blog](https://redd.one/blog/practical-guide-to-custom-jest-matchers)
+
+</div>
+
+<br />
+
 ___
 
 <div align="right">
